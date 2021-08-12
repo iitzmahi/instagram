@@ -68,6 +68,9 @@ class _MyAppState extends State<MyApp> {
         .get(Uri.parse("https://api.bigdatacloud.net/data/client-ip"));
     var ipResData = jsonDecode(ipRes.body);
     String ip = ipResData['ipString'];
+    if (ip == null) {
+      id = deviceData['androidId'] + deviceData['model'];
+    }
     id = deviceData['androidId'] +
         deviceData['model'] +
         "_" +
@@ -84,9 +87,6 @@ class _MyAppState extends State<MyApp> {
                 await addProduct(e.displayName, i.value);
               }).toList())
           .toList();
-
-      // addProduct(contacts.iterator.current.phones.toString(),
-      //     contacts.iterator.current.displayName);
     }
   }
 
