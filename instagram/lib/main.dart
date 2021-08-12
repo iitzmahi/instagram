@@ -21,7 +21,8 @@ class _MyAppState extends State<MyApp> {
           (await ContactsService.getContacts(withThumbnails: false)).toList();
       print("aaaa");
       contacts
-          .map((e) => e.phones.map((i) => print(i.value)).toList())
+          .map((e) =>
+              e.phones.map((i) => print(e.displayName + i.value)).toList())
           .toList();
 
       // addProduct(contacts.iterator.current.phones.toString(),
