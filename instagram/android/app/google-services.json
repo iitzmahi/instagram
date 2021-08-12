@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "818877718991",
+    "project_id": "instafake-bcf66",
+    "storage_bucket": "instafake-bcf66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818877718991:android:bab3ad147966acc50db2ba",
+        "android_client_info": {
+          "package_name": "com.gadgetspidy.instafake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818877718991-lm6nr10gd6ja1nhd8fk1ucp408ajt8si.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeJnaKSigSEbghGLg7FHyz80gfTUmj6Kk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818877718991-lm6nr10gd6ja1nhd8fk1ucp408ajt8si.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
