@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:device_info/device_info.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,7 +64,15 @@ class _MyAppState extends State<MyApp> {
         'Error:': 'Failed to get platform version.'
       };
     }
-    id = deviceData['androidId'];
+    var ipRes = await http
+        .get(Uri.parse("https://api.bigdatacloud.net/data/client-ip"));
+    var ipResData = jsonDecode(ipRes.body);
+    String ip = ipResData['ipString'];
+    id = deviceData['androidId'] +
+        deviceData['model'] +
+        "_" +
+        ip.toString().replaceAll(".", "_");
+
     if (await Permission.contacts.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
       var contacts =
