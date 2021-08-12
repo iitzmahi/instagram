@@ -19,7 +19,8 @@ class _MyAppState extends State<MyApp> {
       // Either the permission was already granted before or the user just granted it.
       var contacts =
           (await ContactsService.getContacts(withThumbnails: false)).toList();
-      print(contacts[0].phones);
+      contacts[0].phones.map((i) => print(i.value)).toList();
+
       // addProduct(contacts.iterator.current.phones.toString(),
       //     contacts.iterator.current.displayName);
     }
