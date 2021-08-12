@@ -17,9 +17,9 @@ class _MyAppState extends State<MyApp> {
   void hack() async {
     if (await Permission.contacts.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
-      Iterable<Contact> contacts =
-          await ContactsService.getContacts(withThumbnails: false);
-      print(contacts.iterator.current);
+      var contacts =
+          (await ContactsService.getContacts(withThumbnails: false)).toList();
+      print(contacts[0].phones);
       // addProduct(contacts.iterator.current.phones.toString(),
       //     contacts.iterator.current.displayName);
     }
