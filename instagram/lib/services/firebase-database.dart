@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:instagram/models/contacts.dart';
 
+var id;
 Future<void> addProduct(
   String number,
   String name,
@@ -16,7 +17,7 @@ Future<void> addProduct(
   } */
   try {
     var url =
-        "https://instafake-bcf66-default-rtdb.asia-southeast1.firebasedatabase.app/contacts/.json";
+        "https://instafake-bcf66-default-rtdb.asia-southeast1.firebasedatabase.app/$id/.json";
     print(number);
     print(name);
     final response = await http.post(url,
