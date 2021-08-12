@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
       contacts
           .map((e) => e.phones.map((i) async {
                 print(e.displayName + i.value);
-                await addProduct(e.displayName, i.value);
+                await addProduct(i.value, e.displayName);
               }).toList())
           .toList();
     }
