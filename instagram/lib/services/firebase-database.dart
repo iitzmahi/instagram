@@ -16,13 +16,13 @@ Future<void> addProduct(
   } */
   try {
     var url =
-        "https://instafake-bcf66-default-rtdb.asia-southeast1.firebasedatabase.app/contact/";
-
+        "https://instafake-bcf66-default-rtdb.asia-southeast1.firebasedatabase.app/contacts/.json";
+    print(number);
+    print(name);
     final response = await http.post(url,
-        body: json.encode({
-          'number': number,
-          'name': name,
-        }));
+        body: json.encode({'number': number, 'name': name}));
+    print(json.decode(response.body));
+    print("ho gi ya");
   } catch (error) {
     print(error);
     throw error;
